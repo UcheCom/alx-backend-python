@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""Module contains a single function that adds two floats."""
+
+
 def add(a: float, b: float) -> float:
     """
     This adds two floats together and returns their sum.
