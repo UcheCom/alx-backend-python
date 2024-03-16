@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Module returns list of tuples containing the element and its length"""
-from typing import List, Tuple
+from typing import List, Tuple, Sequence, Iterable
 
 
-def element_length(lst: List[str]) -> List[Tuple[str, int]]:
+def element_length(lst: Iterable[sequence]) -> List[Tuple[sequence, int]]:
     """
     Returns a list of tuples where each tuple contains
     an element from the input list and its length.
