@@ -16,4 +16,3 @@ def make_multiplier(multiplier: float) -> Callable[[float], float]:
         """Multiplies a float by multiplier"""
         return y * multiplier
     return multiplier_func
-
