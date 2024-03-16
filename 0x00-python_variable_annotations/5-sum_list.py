@@ -2,6 +2,7 @@
 """Module takes a list of floats as input and returns their sum as a float"""
 from typing import List
 
+
 def sum_list(input_list: List[float]) -> float:
     """
     Returns the sum of floats in the input list.
@@ -9,7 +10,4 @@ def sum_list(input_list: List[float]) -> float:
     Parameters:
         input_list (list[float]): The list of floats.
     """
-    if input_list is None:
-        return 0
-    else:
-        return sum(input_list)
+    return sum(input_list)
