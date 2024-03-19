@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+"""Module writes an asynchronous that takes in an int arg"""
+import asyncio
+import random
+
+
+async def wait_random(max_delay=10):
+    """Returns the delay value in seconds"""
+    ran_delay = random.uniform(0, max_delay)
+
+    await asyncio.sleep(ran_delay)
+
+    return ran_delay
