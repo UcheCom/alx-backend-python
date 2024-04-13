@@ -43,7 +43,7 @@ class TestGithubOrgClient(unittest.TestCase):
             )
 
     @patch("client.get_json")
-    def test_public_repos(self, mock_json) -> None:
+    def test_public_repos(self, mock_json):
         """Tests the `public_repos` method."""
         test_payload = [{"name": "Google"}, {"name": "repo2"}]
         mock_json.return_value = test_payload
@@ -65,7 +65,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ({'license': {'key': "my_license"}}, "my_license", True),
         ({'license': {'key': "other_license"}}, "my_license", False)
     ])
-    def test_has_license(self, repo, key, expected) -> None:
+    def test_has_license(self, repo, key, expected):
         """Tests the `has_license` method."""
         gh_client = GithubOrgClient.has_license(repo, key)
         self.assertEqual(gh_client, expected)
