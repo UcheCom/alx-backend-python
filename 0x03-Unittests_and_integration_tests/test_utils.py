@@ -20,13 +20,12 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
     def test_access_nested_map(self, nested_map: Mapping,
-                               path: Sequence, expected: int) -> None:
+                               path: Sequence, expected: Any) -> None:
         """
         Test the access_nested_map method.
         Args:
             nested_map (Dict): A dictionary that may have nested dict
-            path (List, tuple, set): Keys to get to the required value in the
-                                     nested dict
+            path (List, tuple, set): Keys to get to the required value
         """
         response = access_nested_map(nested_map, path)
         self.assertEqual(response, expected)
