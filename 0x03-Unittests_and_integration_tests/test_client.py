@@ -31,11 +31,11 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_public_repos_url(self) -> None:
         """ This tests public repos url method"""
         with patch(
-                "client.GithubOrgClient",
+                "client.GithubOrgClient.org",
                 new_callable=PropertyMock,
         ) as mock:
             mock.return_value = {
-                'repos_url': "https://a[i.github.com/orgs/google/repos",
+                'repos_url': "https://api.github.com/orgs/google/repos",
             }
             self.assertEqual(
                 GithubOrgClient("Google")._public_repos_url,
