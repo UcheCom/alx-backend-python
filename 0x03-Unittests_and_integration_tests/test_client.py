@@ -2,11 +2,8 @@
 """A module for testing the client module.
 """
 import unittest
-from unittest.mock import (
-    Mock,
-    PropertyMock,
-    patch,
-)
+import json
+from unittest.mock import Mock, PropertyMock, patch
 from parameterized import parameterized, parameterized_class
 from requests import HTTPError
 from client import GithubOrgClient
@@ -17,17 +14,19 @@ class TestGithubOrgClient(unittest.TestCase):
     """Tests the `GithubOrgClient` class."""
 
     @parameterized.expand([
-        ('google'),
-        ('abc')
+        ("google",),
+        ("abc",)
     ])
     @patch('client.get_json')
     def test_org(self, inp, mock):
         """Tests the `org` method returns the correct value."""
+        expected = {"org": inp}
+        mock.return_value = expected
+
         gh_client = GithubOrgClient(inp)
-        gh_client.org()
-        mock.assert_called_once_with(
-            "https://api.github.com/orgs/{}".format(inp)
-        )
+        result = gh_client.org()
+        mock.assert_called_once_with(f'https://api.github.com/orgs/{inp}')
+        self.assertEqual(result, expected)
 
     def test_public_repos_url(self) -> None:
         """ This tests public repos url method"""
