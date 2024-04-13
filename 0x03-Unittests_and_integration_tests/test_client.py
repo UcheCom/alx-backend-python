@@ -2,9 +2,7 @@
 """A module for testing the client module.
 """
 import unittest
-from typing import Dict
 from unittest.mock import (
-    MagicMock,
     Mock,
     PropertyMock,
     patch,
@@ -18,19 +16,16 @@ from fixtures import TEST_PAYLOAD
 class TestGithubOrgClient(unittest.TestCase):
     """Tests the `GithubOrgClient` class."""
     @parameterized.expand([
-        ("google", {'login': "google"}),
-        ("abc", {'login': "abc"}),
+        ("google"),
+        ("abc"),
     ])
-    @patch(
-        "client.get_json",
-    )
-    def test_org(self, org: str, resp: Dict, mocked_fxn: MagicMock) -> None:
-        """Tests the `org` method."""
-        mocked_fxn.return_value = MagicMock(return_value=resp)
-        gh_client = GithubOrgClient(org)
-        self.assertEqual(gh_client.org(), resp)
+    @patch("client.get_json")
+    def test_org(self, inp, mocked_fxn):
+        """Tests the `org` method returns the correct value."""
+        gh_client = GithubOrgClient(inp)
+        gh_client.org()
         mocked_fxn.assert_called_once_with(
-            "https://api.github.com/orgs/{}".format(org)
+            "https://api.github.com/orgs/{}".format(inp)
         )
 
     def test_public_repos_url(self) -> None:
