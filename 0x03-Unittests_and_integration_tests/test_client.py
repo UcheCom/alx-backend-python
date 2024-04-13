@@ -33,7 +33,6 @@ class TestGithubOrgClient(unittest.TestCase):
             "https://api.github.com/orgs/{}".format(org)
         )
 
-
     def test_public_repos_url(self) -> None:
         """ This tests public repos url method"""
         with patch(
@@ -47,7 +46,6 @@ class TestGithubOrgClient(unittest.TestCase):
                 GithubOrgClient("Google")._public_repos_url,
                 "https://api.github.com/orgs/google/repos",
             )
-
 
     @patch("client.get_json")
     def test_public_repos(self, mock_get_json: MagicMock) -> None:
@@ -116,13 +114,13 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(client_has_licence, expected)
 
 
-    @parameterized_class([
-    {
-        'org_payload': TEST_PAYLOAD[0][0],
-        'repos_payload': TEST_PAYLOAD[0][1],
-        'expected_repos': TEST_PAYLOAD[0][2],
-        'apache2_repos': TEST_PAYLOAD[0][3],
-    },
+@parameterized_class([
+        {
+            'org_payload': TEST_PAYLOAD[0][0],
+            'repos_payload': TEST_PAYLOAD[0][1],
+            'expected_repos': TEST_PAYLOAD[0][2],
+            'apache2_repos': TEST_PAYLOAD[0][3],
+        },
 ])
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """This performs integration tests for the `GithubOrgClient` class."""
