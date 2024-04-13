@@ -15,16 +15,17 @@ from fixtures import TEST_PAYLOAD
 
 class TestGithubOrgClient(unittest.TestCase):
     """Tests the `GithubOrgClient` class."""
+
     @parameterized.expand([
-        ("google"),
-        ("abc"),
+        ('google'),
+        ('abc')
     ])
-    @patch("client.get_json")
-    def test_org(self, inp, mocked_fxn):
+    @patch('client.get_json')
+    def test_org(self, inp, mock):
         """Tests the `org` method returns the correct value."""
         gh_client = GithubOrgClient(inp)
         gh_client.org()
-        mocked_fxn.assert_called_once_with(
+        mock.assert_called_once_with(
             "https://api.github.com/orgs/{}".format(inp)
         )
 
